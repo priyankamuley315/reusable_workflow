@@ -1,0 +1,25 @@
+name: Deploy Workflow
+on:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string  
+      deploy_url:
+        required: false
+        type: string
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.enviromment }}
+      url: ${{ inputs.deploy_url }}
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+      - name: Build
+        run: echo " building the app ... "
+      - name: Deploy to $ {{ inputs.environment }}
+        run: echo "Deploying to ${{ inputs.environment }}...."
+
+
