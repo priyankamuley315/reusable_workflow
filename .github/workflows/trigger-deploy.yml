@@ -1,0 +1,11 @@
+name: trigger deploy
+on:
+  push:
+    branches:
+      - main
+jobs:
+  call-deploy:
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: production
+      deploy_url: https://your-app.example.com
